@@ -11,3 +11,4 @@ from . import member
 from . import supplier
 from . import antrian
 from . import delivery_order
+from . import orderdetail

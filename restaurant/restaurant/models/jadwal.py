@@ -10,9 +10,8 @@ class Jadwal(models.Model):
                            required=False)
 
     role = fields.Many2one(comodel_name='restaurant.pekerja',
-        string='Role',
-        required=False)
-
+                           string='Role',
+                           required=False)
 
     senin = fields.Selection(string='Senin',
                              selection=[('shift_1', 'Shift 1'),
@@ -53,4 +52,3 @@ class Jadwal(models.Model):
         comodel_name='restaurant.pekerja',
         string='Jadwal_shift',
         required=False)
-

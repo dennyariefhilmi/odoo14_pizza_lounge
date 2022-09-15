@@ -3,6 +3,7 @@ from odoo import fields, models, api, _
 
 class order(models.Model):
     _name = 'restaurant.order'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Description'
 
     name = fields.Selection(
@@ -18,25 +19,24 @@ class order(models.Model):
                    ('table_9', 'Table 9'),
                    ('table_10', 'Table 10'),
                    ],
-        required=False, )
+        required=False, tracking=True)
 
     reference = fields.Char(string='Order Reference', required=True, copy=False, readonly=True,
-                            default=lambda self: _('Order ID :'))
-
+                            default=lambda self: _('Order ID :'), tracking=True)
 
     kapasitas = fields.Selection(string='Kapasitas',
                                  selection=[('2', '2'),
                                             ('4', '4'),
-                                            ('8', '8'),],
-                                 required=False,)
+                                            ('8', '8'), ],
+                                 required=False, tracking=True)
     status = fields.Selection(string='Status',
                               selection=[('kosong', 'Kosong'),
                                          ('terisi', 'Terisi'),
-                                         ('reservasi','Reservasi')],
-                              required=False,)
+                                         ('reservasi', 'Reservasi')],
+                              required=False, tracking=True)
     jam_mulai = fields.Datetime(string='Jam Mulai',
                                 required=False,
-                                default=fields.Datetime.now())
+                                default=fields.Datetime.now(), tracking=True)
     # menu_id = fields.One2many(
     #     comodel_name='restaurant.menu_makanan',
     #     inverse_name='meja_id',
@@ -48,12 +48,10 @@ class order(models.Model):
         string='Menu_',
         required=False)
 
-    #membuat sequence nomor order
+    # membuat sequence nomor order
     @api.model
     def create(self, vals):
         if vals.get('reference', _('Order ID :')) == _('Order ID :'):
             vals['reference'] = self.env['ir.sequence'].next_by_code('restaurant.order') or _('Order ID :')
         res = super(order, self).create(vals)
         return res
-
-
