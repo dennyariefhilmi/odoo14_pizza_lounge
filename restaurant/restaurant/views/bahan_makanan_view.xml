@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="bahan_makanan_view_tree" model="ir.ui.view">
+        <field name="name">bahan_makanan_view_tree</field>
+        <field name="model">restaurant.bahan_makanan</field>
+        <field name="arch" type="xml">
+            <tree string="bahan_makanan_tree">
+                <field name="name"/>
+                <field name="qty"/>
+                <field name="satuan"/>
+                <field name="tgl_datang"/>
+                <field name="kadaluarsa"/>
+                <field name="supplier_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="bahan_makanan_view_form" model="ir.ui.view">
+        <field name="name">bahan_makanan_view_form</field>
+        <field name="model">restaurant.bahan_makanan</field>
+        <field name="arch" type="xml">
+            <form string="bahan_makanan_form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="qty"/>
+                            <field name="satuan"/>
+                            <field name="supplier_id"/>
+                        </group>
+                        <group>
+                            <field name="tgl_datang"/>
+                            <field name="kadaluarsa"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="bahan_makanan_action" model="ir.actions.act_window">
+        <field name="name">Bahan Makanan</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">restaurant.bahan_makanan</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem id="bahan_makananan_categ"
+              name="Bahan Makanan"
+              parent="restaurant_daftar_menu"
+              action="bahan_makanan_action"
+              sequence="20"/>
+</odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+    <menuitem id="restaurant_menu_root"
+              name="Pizza Lounge"
+              sequence="10"/>
+
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="restaurant_order_menu"
+              name="Order"
+              parent="restaurant_menu_root"
+              sequence="15"/>
+    <menuitem id="restaurant_daftar_menu"
+              name="Daftar"
+              parent="restaurant_menu_root"
+              sequence="10"/>
+    <menuitem id="restaurant_antrian_menu"
+              name="Antrian"
+              parent="restaurant_menu_root"
+              sequence="20"/>
+    <menuitem id="restaurant_delivery_menu"
+              name="Delivery Order"
+              parent="restaurant_menu_root"
+              sequence="30"/>
+</odoo>

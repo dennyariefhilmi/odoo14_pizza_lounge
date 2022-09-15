@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="order_view_kanban">
+        <field name="name">order_view_kanban</field>
+        <field name="model">restaurant.order</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <div class="oe_title">
+                    <h1>
+                        <field name="reference" readonly="1"/>
+                    </h1>
+                </div>
+                <group>
+                    <field name="name"/>
+                    <field name="status"/>
+                    <field name="kapasitas"/>
+                    <field name="jam_mulai"/>
+                </group>
+
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_kanban_record_fill">
+                            <div class="oe_kanban_details d-flex flex-column">
+                                <ul>
+                                    <li>
+                                        <strong>
+                                            <field name="name"/>
+                                        </strong>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li>
+                                        <strong>
+                                            <field name="kapasitas"/>
+                                        </strong>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li>
+                                        <strong>
+                                            <field name="status"/>
+                                        </strong>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="order_view_form" model="ir.ui.view">
+        <field name="name">order_view_form</field>
+        <field name="model">restaurant.order</field>
+        <field name="arch" type="xml">
+            <form string="order_form">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="reference" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="jam_mulai"/>
+                        </group>
+                        <group>
+                            <field name="status"/>
+                            <field name="kapasitas"/>
+                        </group>
+                    </group>
+                    <notebook colspan="8">
+                        <page name="name" string="Pesanan">
+                            <field name="menu_id">
+                                <tree editable="bottom" create="true" edit="true" delete="true">
+                                    <field name="name"/>
+                                    <field name="harga"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="order_view_action" model="ir.actions.act_window">
+        <field name="name">order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">restaurant.order</field>
+        <field name="view_mode">kanban,form</field>
+    </record>
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="order_menu_categ"
+              name="order"
+              parent="restaurant_order_menu"
+              action="order_view_action"
+              sequence="10"/>
+</odoo>

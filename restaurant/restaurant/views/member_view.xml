@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    <record id="member_view_tree_inherit" model="ir.ui.view">-->
+<!--        <field name="name">List Member</field>-->
+<!--        <field name="model">res.partner</field>-->
+<!--        <field name="inherit_id" ref="base.view_partner_tree"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//field[@name='name']" position="after">-->
+<!--                <field name="level"/>-->
+
+<!--            </xpath>-->
+
+<!--        </field>-->
+<!--    </record>-->
+
+
+    <record id="member_view_form_inherit" model="ir.ui.view">
+        <field name="name">Form Member</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='function']" position="replace">
+                <field name="level"/>
+
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="member_view_action" model="ir.actions.act_window">
+        <field name="name">Membership</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="member_menu_categ"
+              name="Membership"
+              parent="restaurant_daftar_menu"
+              action="member_view_action"
+              sequence="40"/>
+</odoo>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="menu_makanan_view_kanban">
+        <field name="name">menu_makanan_view_kanban</field>
+        <field name="model">restaurant.menu_makanan</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="img_makanan" widget="image" options='{"size": [75, 75]}'/>
+                <field name="tipe"/>
+                <field name="harga" widget="monetary"/>
+                <field name="deskripsi"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_kanban_record_fill">
+                            <div class="oe_kanban_details d-flex flex-column">
+                                <ul>
+                                    <field name="img_makanan" widget="image" class="oe_avatar"
+                                           options="{&quot;preview_image&quot;: &quot;img_makanan&quot;}"/>
+                                </ul>
+                                <hr>
+                                    <ul>
+                                        <h2><field name="name"/></h2>
+                                    </ul>
+                                    <ul>
+                                        <li>
+                                            <group>
+                                                <strong>Tipe :</strong>
+                                            </group>
+                                            <group>
+                                            <strong>
+                                                <field name="tipe"/>
+                                            </strong>
+                                            </group>
+                                        </li>
+                                    </ul>
+                                    <ul>
+                                        <li>
+                                            <group>
+                                                <strong>Harga :</strong>
+                                            </group>
+                                            <group>
+                                            <strong>
+                                                <field name="harga" widget="monetary"/>
+                                            </strong>
+                                            </group>
+                                        </li>
+                                    </ul>
+                                </hr>
+                                <div class="oe_button_box" name="button_box">
+                                    <!--                                    <button name="create_action" string="Selesai" type="object" />-->
+                                    <!--                                            attrs="{'invisible':[('binding_model_id','!=',False)]}" icon="fa-plus-square" -->
+                                    <!--                                            help="Display an option on related documents to print this report" class="oe_stat_button"/>-->
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="menu_makanan_view_form" model="ir.ui.view">
+        <field name="name">menu_makanan_view_form</field>
+        <field name="model">restaurant.menu_makanan</field>
+        <field name="arch" type="xml">
+            <form string="menu_makanan_form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="tipe"/>
+                            <field name="harga"/>
+                            <field name="deskripsi"/>
+                        </group>
+                        <group>
+                            <field name="img_makanan" widget="image" class="oe_avatar"
+                                   options="{&quot;preview_image&quot;: &quot;img_makanan&quot;}"/>
+                        </group>
+                    </group>
+                    <notebook colspan='8'>
+                        <page name="name" string="Deskripsi">
+                            <group>
+                                <field name="deskripsi"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="menu_makanan_action" model="ir.actions.act_window">
+        <field name="name">Menu Makanan</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">restaurant.menu_makanan</field>
+        <field name="view_mode">kanban,form</field>
+    </record>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="menu_makanan_categ"
+              name="Menu Makanan"
+              parent="restaurant_daftar_menu"
+              action="menu_makanan_action"
+              sequence="25"/>
+</odoo>

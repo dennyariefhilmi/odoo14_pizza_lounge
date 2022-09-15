@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="inventory_view_tree" model="ir.ui.view">
+        <field name="name">inventory_view_tree</field>
+        <field name="model">restaurant.inventory</field>
+        <field name="arch" type="xml">
+            <tree string="inventory_tree">
+                <field name="name"/>
+                <field name="jenis"/>
+                <field name="kuantitas"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="inventory_view_form" model="ir.ui.view">
+        <field name="name">inventory_view_form</field>
+        <field name="model">restaurant.inventory</field>
+        <field name="arch" type="xml">
+            <form string="inventory_form">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="jenis"/>
+                        <field name="kuantitas"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="inventory_view_action" model="ir.actions.act_window">
+        <field name="name">Inventory</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">restaurant.inventory</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="inventory_menu_categ"
+              name="Inventory"
+              parent="restaurant_daftar_menu"
+              action="inventory_view_action"
+              sequence="10"/>
+</odoo>

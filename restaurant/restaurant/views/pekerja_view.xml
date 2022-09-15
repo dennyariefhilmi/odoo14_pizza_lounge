@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pekerja_view_tree" model="ir.ui.view">
+        <field name="name">pekerja_view_tree</field>
+        <field name="model">restaurant.pekerja</field>
+        <field name="arch" type="xml">
+            <tree string="pekerja_tree">
+                <field name="name"/>
+                <field name="role"/>
+                <field name="usia"/>
+                <field name="no_hp"/>
+                <field name="alamat"/>
+                <field name="mulai_bekerja"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="pekerja_view_form" model="ir.ui.view">
+        <field name="name">pekerja_view_form</field>
+        <field name="model">restaurant.pekerja</field>
+        <field name="arch" type="xml">
+            <form string="pekerja_form">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="role"/>
+                        <field name="usia"/>
+                        <field name="no_hp"/>
+                        <field name="alamat"/>
+                        <field name="mulai_bekerja"/>
+                    </group>
+                    <notebook colspan="8">
+                        <page name="name" string="Jadwal">
+                            <field name="jadwal_ids">
+                                <tree editable='bottom'>
+                                <field name="senin"/>
+                                <field name="selasa"/>
+                                <field name="rabu"/>
+                                <field name="kamis"/>
+                                <field name="jumat"/>
+                                <field name="sabtu"/>
+                                <field name="minggu"/>
+                            </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="pekerja_view_action" model="ir.actions.act_window">
+        <field name="name">Karyawan</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">restaurant.pekerja</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="pekerja_view_categ"
+              name="Karyawan"
+              parent="restaurant_daftar_menu"
+              action="pekerja_view_action"
+              sequence="35"/>
+</odoo>
